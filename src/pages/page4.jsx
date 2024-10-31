@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, Box, Grid, Button } from '@mui/material';
+import { Container, Typography, Box, Grid, Button, TextField } from '@mui/material';
 import BackButton from '../components/BackButton';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CancelIcon from '@mui/icons-material/Cancel'; // Icono para indicar que se ha perdido
@@ -11,12 +11,12 @@ export default function Page4() {
   const [word, setWord] = useState('');
   const [stream, setStream] = useState(null);
   const [fade, setFade] = useState(0);
-  const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
   const [displayedLetters, setDisplayedLetters] = useState("");
   const [gameStatus, setGameStatus] = useState(null); // 'win' o 'lose'
+  const [inputLetter, setInputLetter] = useState(''); // Nuevo estado para la letra del input
 
   useEffect(() => {
-    const wordsList = ['Sol', 'Amor', 'Luna'];
+    const wordsList = ['sol', 'amor', 'luna']; // Todas las palabras en minúsculas
     const randomWord = wordsList[Math.floor(Math.random() * wordsList.length)];
     setWord(randomWord);
     setFade(1);
@@ -37,19 +37,30 @@ export default function Page4() {
   }, []);
 
   const handleCountdownFinish = () => {
-    if (currentLetterIndex < word.length) {
-      const newLetter = word[currentLetterIndex]; // Obtenemos la letra actual
-      setDisplayedLetters(prev => prev + newLetter); // Actualizamos displayedLetters
-      setCurrentLetterIndex(prev => prev + 1); // Pasamos a la siguiente letra
-      
+    if (inputLetter && displayedLetters.length < word.length) {
+      const lowerCaseInput = inputLetter.toLowerCase(); // Convertir la letra del input a minúsculas
+      const currentWord = displayedLetters + lowerCaseInput; // Combina displayedLetters con la nueva letra
+      setDisplayedLetters(currentWord); // Actualiza displayedLetters con el currentWord
+      setInputLetter(''); // Limpiar el input después de usarlo
+  
       // Verificamos si se ha formado la palabra
-      if (displayedLetters + newLetter === word) {
+      if (currentWord === word) {
         setGameStatus('win'); // Cambiamos el estado a 'win' si se forma la palabra
+        return; // Detener ejecución aquí si ganaste
+      } 
+      
+      // Verificamos si se ha perdido
+      if (currentWord.length > word.length || 
+          !word.startsWith(currentWord)) { // Comprobar si currentWord es prefijo de word
+        setGameStatus('lose'); // Si la letra ingresada no coincide con la palabra
+        return; // Detener la ejecución aquí
       }
     } else {
       setGameStatus('lose'); // Si se termina el conteo sin completar la palabra
     }
   };
+  
+  
 
   const refreshPage = () => {
     window.location.reload();
@@ -97,7 +108,14 @@ export default function Page4() {
           </Box>
         </Grid>
 
-        <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Grid item xs={12} md={5} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <TextField 
+            label="Escribe una letra" 
+            value={inputLetter} 
+            onChange={(e) => setInputLetter(e.target.value)} // Actualiza el estado del input
+            variant="outlined" 
+            sx={{ margin: '20px auto', width: '200px' }}
+          />
           <Box
             sx={{
               width: '300px',
@@ -123,7 +141,7 @@ export default function Page4() {
                 '&:hover': { color: '#ffcc00' }
               }}
             >
-              {word[currentLetterIndex] || ''} {/* Muestra solo la letra actual */}
+              {inputLetter || ''} {/* Muestra solo la letra del input */}
             </Typography>
           </Box>
         </Grid>
@@ -140,7 +158,7 @@ export default function Page4() {
           {displayedLetters}
         </Typography>
         {gameStatus === 'win' ? (
-          <CheckBoxIcon sx={{ color: 'white', fontSize: '8rem', marginTop: "-95px", }} />
+          <CheckBoxIcon sx={{ color: 'green', fontSize: '8rem', marginTop: "-95px", }} />
         ) : gameStatus === 'lose' ? (
           <CancelIcon sx={{ color: 'red', fontSize: '8rem', marginTop: "-95px", }} /> // Icono para perder
         ) : null}
