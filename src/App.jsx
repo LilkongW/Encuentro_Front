@@ -3,6 +3,7 @@ import Page1 from './pages/page1';
 import Page2 from './pages/page2';
 import Page3 from './pages/page3';
 import Page4 from './pages/page4';
+import Page5 from './pages/page5';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Background from "./assets/background.jpg";
 import { ThemeProvider } from '@mui/material/styles';
@@ -10,6 +11,7 @@ import theme from './theme';
 import { Box } from "@mui/material";
 import Mascota from "./assets/mascota.jpg";
 import { useState } from 'react';
+import {Typography} from '@mui/material';
 
 function App() {
   return (
@@ -46,7 +48,7 @@ function AppContent() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          filter: 'brightness(0.75)',
+          filter: 'brightness(0.65)',
           zIndex: -2,
         }}
       />
@@ -99,8 +101,27 @@ function AppContent() {
           <Route path="/page2" element={showPage2 ? <Page2 /> : null} />
           <Route path="/page3" element={<Page3 />} />
           <Route path="/page4" element={<Page4 />} />
+          <Route path="/page5" element={<Page5 />} />
         </Routes>
       </Box>
+                  {/* Contenedor para la lista en la parte superior izquierda */}
+                <Box 
+                sx={{ 
+                    position: 'absolute', 
+                    top: 25, 
+                    right: 20,
+                    color: 'white', 
+                    textAlign: 'left', // Cambiado a 'left' para alinear a la izquierda
+                    lineHeight: 1.5, // Espaciado entre líneas
+                }}
+            >
+                <Typography 
+                    variant="body1" 
+                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 1, fontSize:"1.2rem" }} // Negrita y margen abajo
+                >
+                    Hecho por - Victor Toro
+                </Typography>
+      </Box>          
     </Box>
   );
 }

@@ -6,23 +6,22 @@ import { useNavigate } from 'react-router-dom';
 export default function Page1({ setAnimateMascot }) {
     const [checked, setChecked] = useState(false);
     const [buttonVisible, setButtonVisible] = useState(false);
-    const [hideElements, setHideElements] = useState(false); // Nuevo estado para ocultar elementos
+    const [hideElements, setHideElements] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-        setChecked(true); // Activa la animación de las letras
-        const timer = setTimeout(() => setButtonVisible(true), 2000); // Retrasa la animación del botón
-        return () => clearTimeout(timer); // Limpia el temporizador al desmontar
+        setChecked(true);
+        const timer = setTimeout(() => setButtonVisible(true), 2000);
+        return () => clearTimeout(timer);
     }, []);
 
     const handleStartClick = () => {
-        setHideElements(true); // Oculta las letras y el botón de inmediato
-        setAnimateMascot(true); // Activa la animación de la mascota
-        // Inicia la navegación después de un breve retraso para que se vea la ocultación
+        setHideElements(true);
+        setAnimateMascot(true);
         setTimeout(() => {
             navigate("/page2");
-            setAnimateMascot(false); // Resetea la animación después de navegar
-        }, 100); // Retraso corto para visualizar la ocultación
+            setAnimateMascot(false);
+        }, 100);
     };
 
     return (
@@ -33,11 +32,10 @@ export default function Page1({ setAnimateMascot }) {
                     display: 'flex', 
                     flexDirection: 'column', 
                     alignItems: 'center', 
-                    mt: 30,
+                    mt: 35,
                     ml: 60 
                 }}
             >
-                {/* Título y subtítulo con animación de crecimiento */}
                 <Grow in={checked && !hideElements} timeout={3000}>
                     <Typography 
                         sx={{ 
@@ -55,7 +53,6 @@ export default function Page1({ setAnimateMascot }) {
                     </Typography>
                 </Grow>
 
-                {/* Botón Start con animación de aparición retrasada */}
                 <Grow in={buttonVisible && !hideElements} timeout={2000}>
                     <Button 
                         onClick={handleStartClick}
@@ -69,11 +66,11 @@ export default function Page1({ setAnimateMascot }) {
                             padding: '10px 40px', 
                             backgroundColor: '#FFFFFF', 
                             textTransform: 'none',
-                            transition: 'background-color 0.3s ease, transform 0.3s ease', // Agrega la transición
+                            transition: 'background-color 0.3s ease, transform 0.3s ease',
                             '&:hover': {
-                                backgroundColor: '#0075f2', // Cambia el color de fondo al pasar el ratón
-                                color: 'white', // Cambia el color del texto al pasar el ratón
-                                transform: 'scale(1.05)', // Aumenta el tamaño del botón al pasar el ratón
+                                backgroundColor: '#0075f2',
+                                color: 'white',
+                                transform: 'scale(1.05)',
                             },
                         }}
                     >
@@ -81,6 +78,52 @@ export default function Page1({ setAnimateMascot }) {
                     </Button>
                 </Grow>
             </Box>
+
+            {/* Contenedor para la lista en la parte superior izquierda */}
+            <Box 
+                sx={{ 
+                    position: 'absolute', 
+                    top: 16, 
+                    right: 0,
+                    color: 'white', 
+                    textAlign: 'left', // Cambiado a 'left' para alinear a la izquierda
+                    lineHeight: 1.5, // Espaciado entre líneas
+                }}
+            >
+                <Typography 
+                    variant="body1" 
+                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5 , fontSize:"2rem"}} // Negrita y margen abajo
+                >
+                    Expositores:
+                </Typography>
+                <Box sx={{ ml: 2 }}> {/* Agregar un margen a la izquierda para los nombres */}
+                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic', fontSize:"1.2rem" }}>
+                        - Josuep Turmero
+                    </Typography>
+                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic',fontSize:"1.2rem" }}>
+                        - Roygel Rosales
+                    </Typography>
+                </Box>
+
+                <Typography 
+                    variant="body1" 
+                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5, fontSize:"2rem" }} // Negrita y margen abajo
+                >
+                    Profesores: 
+                </Typography>
+                <Box sx={{ ml: 2 }}> {/* Agregar un margen a la izquierda para los nombres */}
+                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic' , fontSize:"1.2rem"}}>
+                        - Juan Carlos Villegas
+                    </Typography>
+                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic', fontSize:"1.2rem" }}>
+                        - Stephanie Carrillo
+                    </Typography>
+                </Box>
+            </Box>
+
+
+
+
 
             {/* Footer centrado con fondo sutil */}
             <Box 

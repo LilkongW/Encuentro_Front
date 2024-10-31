@@ -2,20 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Container, Typography, Box, Grid, Button } from '@mui/material';
 import BackButton from '../components/BackButton';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import CancelIcon from '@mui/icons-material/Cancel'; // Icono para indicar que se ha perdido
+import CountdownButton from '../components/CountDown';
+import Page5button from '../components/Page5Button';
 
 export default function Page4() {
   const [signImage, setSignImage] = useState('');
   const [word, setWord] = useState('');
   const [stream, setStream] = useState(null);
-  const [fade, setFade] = useState(0); // Estado para controlar la opacidad
+  const [fade, setFade] = useState(0);
+  const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
+  const [displayedLetters, setDisplayedLetters] = useState("");
+  const [gameStatus, setGameStatus] = useState(null); // 'win' o 'lose'
 
   useEffect(() => {
-    const simulatedImage = 'url_de_imagen_inferencia';
-    setSignImage(simulatedImage);
-    setWord('SEÑA');
-
-    // Iniciar el efecto de desvanecimiento
-    setFade(1); // Cambia a 1 para que se vea al final del efecto
+    const wordsList = ['Sol', 'Amor', 'Luna'];
+    const randomWord = wordsList[Math.floor(Math.random() * wordsList.length)];
+    setWord(randomWord);
+    setFade(1);
   }, []);
 
   useEffect(() => {
@@ -32,7 +36,21 @@ export default function Page4() {
       });
   }, []);
 
-  // Función para refrescar la página
+  const handleCountdownFinish = () => {
+    if (currentLetterIndex < word.length) {
+      const newLetter = word[currentLetterIndex]; // Obtenemos la letra actual
+      setDisplayedLetters(prev => prev + newLetter); // Actualizamos displayedLetters
+      setCurrentLetterIndex(prev => prev + 1); // Pasamos a la siguiente letra
+      
+      // Verificamos si se ha formado la palabra
+      if (displayedLetters + newLetter === word) {
+        setGameStatus('win'); // Cambiamos el estado a 'win' si se forma la palabra
+      }
+    } else {
+      setGameStatus('lose'); // Si se termina el conteo sin completar la palabra
+    }
+  };
+
   const refreshPage = () => {
     window.location.reload();
   };
@@ -47,6 +65,18 @@ export default function Page4() {
         marginBottom: "-40px"
       }}>
         ¿Listo para un pequeño juego?
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: 'Bebas Neue Cyrillic',
+          color: 'white',
+          textAlign: "center",
+          fontSize: "3rem",
+          marginBottom: "-40px",
+          marginTop: "20px",
+        }}
+      >
+        Tu palabra es: {word}
       </Typography>
 
       <Grid container spacing={2} sx={{ height: '70vh', alignItems: 'center', justifyContent: 'center' }}>
@@ -93,7 +123,7 @@ export default function Page4() {
                 '&:hover': { color: '#ffcc00' }
               }}
             >
-              Y
+              {word[currentLetterIndex] || ''} {/* Muestra solo la letra actual */}
             </Typography>
           </Box>
         </Grid>
@@ -107,28 +137,36 @@ export default function Page4() {
           fontWeight: 'bold',
           marginTop: "-80px",
         }}>
-          {word}
+          {displayedLetters}
         </Typography>
-        <CheckBoxIcon sx={{ color: 'white', fontSize: '8rem', marginTop: "-95px", }} />
+        {gameStatus === 'win' ? (
+          <CheckBoxIcon sx={{ color: 'white', fontSize: '8rem', marginTop: "-95px", }} />
+        ) : gameStatus === 'lose' ? (
+          <CancelIcon sx={{ color: 'red', fontSize: '8rem', marginTop: "-95px", }} /> // Icono para perder
+        ) : null}
       </Box>
 
+      <Box sx={{ position: 'fixed', left: 0, top: '40%' }}>
+        <CountdownButton onCountdownFinish={handleCountdownFinish} />
+      </Box>
+      
+      <Page5button/>
       <Box
         sx={{
           position: 'fixed',
           bottom: 16,
           right: 16,
           display: 'flex',
-          gap: 2, // Espacio entre los botones
-          alignItems: 'center', // Alineación vertical de los botones
+          gap: 2,
+          alignItems: 'center',
         }}
       >
-        {/* Botón de refresco */}
         <Button
           variant="contained"
           color="primary"
           onClick={refreshPage}
           sx={{
-            height: '56px', // Altura fija para alinear los botones
+            height: '56px',
             fontFamily: 'Bebas Neue Cyrillic',
             fontSize: '2rem',
             color: '#0075f2',
@@ -139,9 +177,9 @@ export default function Page4() {
             textTransform: 'none',
             transition: 'background-color 0.3s ease, transform 0.3s ease',
             '&:hover': {
-              backgroundColor: '#0075f2', // Cambia el color de fondo al pasar el ratón
-              color: 'white', // Cambia el color del texto al pasar el ratón
-              transform: 'scale(1.05)', // Aumenta el tamaño del botón al pasar el ratón
+              backgroundColor: '#0075f2',
+              color: 'white',
+              transform: 'scale(1.05)',
             },
           }}
         >
