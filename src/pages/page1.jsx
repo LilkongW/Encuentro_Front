@@ -40,8 +40,8 @@ export default function Page1({ setAnimateMascot }) {
                     display: 'flex', 
                     flexDirection: 'column', 
                     alignItems: 'center', 
-                    mt: 35,
-                    ml: 60 
+                    mt: 28,
+                    ml: 55 
                 }}
             >
                 <Grow in={checked && !hideElements} timeout={3000}>
@@ -90,8 +90,8 @@ export default function Page1({ setAnimateMascot }) {
             <Box 
                 sx={{ 
                     position: 'absolute', 
-                    top: 0,
-                    right: 0,
+                    top: 60,  // Ajusta este valor para posicionar verticalmente
+                    right: -310, // Ajusta este valor para posicionar horizontalmente
                     color: 'white', 
                     textAlign: 'left',
                     lineHeight: 1.5,

@@ -109,7 +109,7 @@ function AppContent() {
                 sx={{ 
                     position: 'absolute', 
                     top: 25, 
-                    right: 20,
+                    right: 24,
                     color: 'white', 
                     textAlign: 'left', // Cambiado a 'left' para alinear a la izquierda
                     lineHeight: 1.5, // Espaciado entre líneas
