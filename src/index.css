@@ -6,7 +6,7 @@
 /* src/index.css */
 @font-face {
     font-family: 'Bebas Neue Cyrillic';
-    src: url('/home/vit/Descargas/Encuentro-Front/Encuentro-Front/src/assets/fonts/BebasNeue-Regular.ttf') format('truetype');
+    src: url('../src/assets/fonts/BebasNeue-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }

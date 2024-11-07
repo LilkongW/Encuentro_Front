@@ -15,7 +15,7 @@ export default function Page2() {
         // Temporizador para navegar a Page3 después de 5 segundos
         const navigateTimer = setTimeout(() => {
             navigate("/page3"); // Cambia a Page3
-        }, 7000); // 5000 ms = 5 segundos
+        }, 5000); // 5000 ms = 5 segundos
 
         return () => {
             clearTimeout(textTimer); // Limpia el temporizador para el texto
@@ -34,7 +34,7 @@ export default function Page2() {
                     ml: -25,
                 }}
             >
-                <Grow in={checked} timeout={3000}>
+                <Grow in={checked} timeout={2000}>
                     <Typography
                         sx={{
                             fontFamily: 'Bebas Neue Cyrillic',

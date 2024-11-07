@@ -9,7 +9,7 @@ import Background from "./assets/background.jpg";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
 import { Box } from "@mui/material";
-import Mascota from "./assets/mascota.jpg";
+import Mascota from "./assets/mascota.png";
 import { useState } from 'react';
 import {Typography} from '@mui/material';
 

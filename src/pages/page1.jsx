@@ -11,8 +11,17 @@ export default function Page1({ setAnimateMascot }) {
 
     useEffect(() => {
         setChecked(true);
-        const timer = setTimeout(() => setButtonVisible(true), 2000);
-        return () => clearTimeout(timer);
+        const buttonTimer = setTimeout(() => setButtonVisible(true), 2000);
+
+        // Temporizador para recargar la página cada 30 segundos
+        const refreshTimer = setInterval(() => {
+            window.location.reload();
+        }, 15000);
+
+        return () => {
+            clearTimeout(buttonTimer);
+            clearInterval(refreshTimer);
+        };
     }, []);
 
     const handleStartClick = () => {
@@ -26,7 +35,6 @@ export default function Page1({ setAnimateMascot }) {
 
     return (
         <Container sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-            {/* Contenedor para el título y subtítulo centrados */}
             <Box 
                 sx={{ 
                     display: 'flex', 
@@ -79,24 +87,23 @@ export default function Page1({ setAnimateMascot }) {
                 </Grow>
             </Box>
 
-            {/* Contenedor para la lista en la parte superior izquierda */}
             <Box 
                 sx={{ 
                     position: 'absolute', 
-                    top: 16, 
+                    top: 0,
                     right: 0,
                     color: 'white', 
-                    textAlign: 'left', // Cambiado a 'left' para alinear a la izquierda
-                    lineHeight: 1.5, // Espaciado entre líneas
+                    textAlign: 'left',
+                    lineHeight: 1.5,
                 }}
             >
                 <Typography 
                     variant="body1" 
-                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5 , fontSize:"2rem"}} // Negrita y margen abajo
+                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5 , fontSize:"2rem"}} 
                 >
                     Expositores:
                 </Typography>
-                <Box sx={{ ml: 2 }}> {/* Agregar un margen a la izquierda para los nombres */}
+                <Box sx={{ ml: 2 }}>
                     <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic', fontSize:"1.2rem" }}>
                         - Josuep Turmero
                     </Typography>
@@ -107,11 +114,11 @@ export default function Page1({ setAnimateMascot }) {
 
                 <Typography 
                     variant="body1" 
-                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5, fontSize:"2rem" }} // Negrita y margen abajo
+                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5, fontSize:"2rem" }} 
                 >
                     Profesores: 
                 </Typography>
-                <Box sx={{ ml: 2 }}> {/* Agregar un margen a la izquierda para los nombres */}
+                <Box sx={{ ml: 2 }}>
                     <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic' , fontSize:"1.2rem"}}>
                         - Juan Carlos Villegas
                     </Typography>
@@ -121,11 +128,6 @@ export default function Page1({ setAnimateMascot }) {
                 </Box>
             </Box>
 
-
-
-
-
-            {/* Footer centrado con fondo sutil */}
             <Box 
                 component="footer" 
                 sx={{ 

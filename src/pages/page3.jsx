@@ -1,7 +1,7 @@
 import { Container, Box, Typography, Fade, Button } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import image1 from '/home/vit/Descargas/Encuentro-Front/Encuentro-Front/src/assets/Letra.png';
+import image1 from '../../src/assets/Letra.png';
 
 export default function Page3() {
     const [showElements, setShowElements] = useState(false);
