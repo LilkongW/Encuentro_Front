@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Container, Typography, Box, Grid, Button } from '@mui/material';
 import BackButton from '../components/BackButton';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
@@ -9,6 +9,8 @@ export default function Page5() {
   const [stream, setStream] = useState(null);
   const [fade, setFade] = useState(0); // Estado para controlar la opacidad
   const [checkBoxColor, setCheckBoxColor] = useState('white'); // Estado para controlar el color del CheckBoxIcon
+  const [palabra, setPalabra] = useState(null); 
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const simulatedImage = 'url_de_imagen_inferencia';
@@ -25,18 +27,29 @@ export default function Page5() {
     setFade(1); // Cambia a 1 para que se vea al final del efecto
   }, []);
 
+
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        setStream(stream);
-        const videoElement = document.getElementById('video');
-        if (videoElement) {
-          videoElement.srcObject = stream;
+    const ws = new WebSocket("ws://localhost:8000/ws/video");
+
+    ws.onmessage = (event) => {
+        const message = JSON.parse(event.data); // Parsear el JSON recibido
+        const frameBase64 = message.frame;
+        const palabra = message.a;
+        
+        // Actualiza el valor de a
+        setPalabra(palabra);
+        // Convierte el frame base64 a una URL de imagen
+        const imgBlob = new Blob([new Uint8Array(atob(frameBase64).split("").map(c => c.charCodeAt(0)))], { type: "image/jpeg" });
+        const url = URL.createObjectURL(imgBlob);
+
+        // Asigna la URL de la imagen al src del video
+        if (videoRef.current) {
+            videoRef.current.src = url;
         }
-      })
-      .catch(err => {
-        console.error("Error al obtener el video:", err);
-      });
+        
+    };
+    
+    return () => ws.close();
   }, []);
 
   // Función para refrescar la página
@@ -55,10 +68,8 @@ export default function Page5() {
 
   // Para simular la entrada de la palabra por consola (puedes reemplazar esto con un input real)
   useEffect(() => {
-    // Simulación: Cambiar esto para que se adapte a tu lógica
-    const simulatedInput = 'Buenas Noches'; // Cambia esto por la palabra que quieres comparar
-    console.log('Palabra ingresada:', simulatedInput);
-    checkWord(simulatedInput); // Verificar la palabra ingresada
+    console.log ("palabra", palabra);
+    checkWord(palabra); // Verificar la palabra ingresada
   }, [word]);
 
   return (
@@ -70,15 +81,15 @@ export default function Page5() {
         fontSize: "7rem",
         marginBottom: "-40px"
       }}>
-        ¡Provemos con Palabras!
+        ¡Probemos con Palabras!
       </Typography>
 
-      <Grid container sx={{ height: '70vh', alignItems: 'center', justifyContent: 'center' }}>
-        <Grid item xs={12} md={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+      <Grid container sx={{ height: '70vh', alignItems: 'center', justifyContent: 'center', mb:"20px" }}>
+        <Grid item xs={12} md={7} sx={{ display: 'flex', justifyContent: 'center' }}>
           <Box
             sx={{
-              width: '350px',
-              height: '350px',
+              width: '500px',
+              height: '500px',
               bgcolor: 'lightgray',
               display: 'flex',
               justifyContent: 'center',
@@ -87,7 +98,7 @@ export default function Page5() {
               borderRadius: '8px',
             }}
           >
-            <video id="video" autoPlay style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+            <img ref={videoRef} alt="Video Stream" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
           </Box>
         </Grid>
       </Grid>
