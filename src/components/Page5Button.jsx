@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export default function Page5button() {
   const navigate = useNavigate(); // Hook para la navegación
@@ -10,32 +11,27 @@ export default function Page5button() {
   };
 
   return (
-    <Box sx={{ position: 'fixed', right: 0, top: '40%', marginRight: "25px", justifyItems: "center", display: "flex", alignItems: "center" }}>
-      <Button
-        variant="contained"
-        color="primary"
+    <Box sx={{ position: 'fixed', right: 0, top: '40%', marginRight: "12px", justifyItems: "center", display: "flex", alignItems: "center" }}>
+      <IconButton
+        onClick={handleNavigateToPage5}
+        aria-label="back to page 1"
         sx={{
-          height: '56px',
-          fontFamily: 'Bebas Neue Cyrillic',
-          fontSize: '2rem',
-          color: '#0075f2',
-          border: '2px solid white',
-          borderRadius: '50px',
-          padding: '10px 40px',
-          backgroundColor: '#FFFFFF',
-          textTransform: 'none',
-          transition: 'background-color 0.3s ease, transform 0.3s ease',
+          width: 80, 
+          height: 80, 
+          backgroundColor: "white", // Fondo blanco para el botón
+          color: "#0075f2", // Color azul para el ícono
+          borderRadius: "50%", // Hace el botón redondo
+          boxShadow: 3, // Sombra para dar un efecto de botón flotante
           '&:hover': {
-            backgroundColor: '#0075f2',
-            color: 'white',
-            transform: 'scale(1.05)',
-          },
-          marginRight: 2, // Espacio entre el botón y el temporizador
+            backgroundColor: "#f0f0f0" // Color de fondo al pasar el mouse
+          }
         }}
-        onClick={handleNavigateToPage5} // Agrega la función al evento onClick
       >
-        ¿Quieres un mejor reto?
-      </Button>
+        <ArrowForwardIcon sx={{ fontSize: 60 }} />
+      </IconButton>
     </Box>
+
   );
 }
+
+

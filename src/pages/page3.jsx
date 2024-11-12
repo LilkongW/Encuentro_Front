@@ -9,7 +9,7 @@ export default function Page3() {
     const [isHoveredStep, setIsHoveredStep] = useState(0); // Controla el paso de cada animación
 
     useEffect(() => {
-        const timer = setTimeout(() => setShowElements(true), 1000);
+        const timer = setTimeout(() => setShowElements(true), 800);
 
         // Activar cada etapa de `isHoveredStep` secuencialmente
         const hoverSequence = [1, 2, 3, 4]; // Define los pasos de animación
@@ -32,22 +32,39 @@ export default function Page3() {
         <Container sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', px: 0 }}>
             {/* Título de la página */}
             <Fade in={showElements}>
-                <Typography
-                    sx={{
-                        fontFamily: 'Bebas Neue Cyrillic',
-                        fontSize: '6rem',
-                        color: 'white',
-                        mb: 4,
-                        transition: 'font-size 0.3s ease, color 0.3s ease',
-                        '&:hover': { color: '#ffcc00' }
-                    }}
-                >
-                    Es muy fácil!
-                </Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <Typography
+                        sx={{
+                            fontFamily: 'Bebas Neue Cyrillic',
+                            fontSize: '5rem',
+                            color: 'white',
+                            mb:"-20px",
+                            textAlign: 'center',
+                            transition: 'font-size 0.3s ease, color 0.3s ease',
+                            '&:hover': { color: '#ffcc00' }
+                        }}
+                    >
+                        Haz una seña y deja que el
+                    </Typography>
+                    
+                    <Typography
+                        sx={{
+                            fontFamily: 'Bebas Neue Cyrillic',
+                            fontSize: '5rem',
+                            color: 'white',
+                            textAlign: 'justify',
+                            width: '80%',
+                            transition: 'font-size 0.3s ease, color 0.3s ease',
+                            '&:hover': { color: '#ffcc00' }
+                        }}
+                    >
+                        juego escriba por ti
+                    </Typography>
+                </Box>
             </Fade>
 
             {/* Contenedor para las imágenes */}
-            <Box sx={{ display: 'flex', justifyContent: 'space-around', width: '100%', maxWidth: '1200px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-around', width: '100%', maxWidth: '1200px', mt: 4 }}>
                 {/* Contenedor del círculo con imagen */}
                 <Fade in={showElements}>
                     <Box
@@ -114,50 +131,27 @@ export default function Page3() {
                 </Fade>
             </Box>
 
-            {/* Nuevo texto debajo de las imágenes */}
+            {/* Botón debajo de las imágenes, centrado en la pantalla */}
             <Fade in={showElements}>
-                <Box sx={{ mt: 4, width: '100%', display: 'flex', justifyContent: 'center' }}>
-                    <Typography
+                <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%', mt: 6 }}>
+                    <Button 
+                        onClick={handlePlayClick}
                         sx={{
                             fontFamily: 'Bebas Neue Cyrillic',
-                            fontSize: '4rem',
-                            color: isHoveredStep === 3 ? 'white' : '#0075f2',
-                            backgroundColor: isHoveredStep === 3 ? '#0075f2' : 'white',
-                            textAlign: 'center',
-                            boxShadow: 3,
-                            width: "20%",
-                            borderRadius: '40px',
-                            transition: 'background-color 0.3s ease, color 0.3s ease',
-                            '&:hover': { backgroundColor: '#0075f2', color: 'white' }
+                            fontSize: '3rem',
+                            color: '#0075f2',
+                            border: '2px solid white',
+                            borderRadius: '50px',
+                            padding: '10px 40px',
+                            backgroundColor: '#FFFFFF',
+                            textTransform: 'none',
+                            transition: 'background-color 0.3s ease, transform 0.3s ease',
+                            '&:hover': { backgroundColor: '#0075f2', color: 'white', transform: 'scale(1.05)' }
                         }}
                     >
-                        Y
-                    </Typography>
+                        Jugar!
+                    </Button>
                 </Box>
-            </Fade>
-
-            {/* Botón en la esquina inferior derecha */}
-            <Fade in={showElements}>
-                <Button 
-                    onClick={handlePlayClick}
-                    sx={{
-                        position: 'fixed',
-                        bottom: 16,
-                        right: 16,
-                        fontFamily: 'Bebas Neue Cyrillic',
-                        fontSize: '3rem',
-                        color: '#0075f2',
-                        border: '2px solid white',
-                        borderRadius: '50px',
-                        padding: '10px 40px',
-                        backgroundColor: '#FFFFFF',
-                        textTransform: 'none',
-                        transition: 'background-color 0.3s ease, transform 0.3s ease',
-                        '&:hover': { backgroundColor: '#0075f2', color: 'white', transform: 'scale(1.05)' }
-                    }}
-                >
-                    Jugar!
-                </Button>
             </Fade>
         </Container>
     );

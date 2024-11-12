@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Container, Typography, Box, Grid, Button } from '@mui/material';
 import BackButton from '../components/BackButton';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import PlayAgainButton from '../components/PlayAgainButton';
 
 export default function Page5() {
   const [signImage, setSignImage] = useState('');
@@ -126,32 +127,7 @@ export default function Page5() {
           alignItems: 'center', // Alineación vertical de los botones
         }}
       >
-        {/* Botón de refresco */}
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={refreshPage}
-          sx={{
-            height: '56px', // Altura fija para alinear los botones
-            fontFamily: 'Bebas Neue Cyrillic',
-            fontSize: '2rem',
-            color: '#0075f2',
-            border: '2px solid white',
-            borderRadius: '50px',
-            padding: '10px 40px',
-            backgroundColor: '#FFFFFF',
-            textTransform: 'none',
-            transition: 'background-color 0.3s ease, transform 0.3s ease',
-            '&:hover': {
-              backgroundColor: '#0075f2', // Cambia el color de fondo al pasar el ratón
-              color: 'white', // Cambia el color del texto al pasar el ratón
-              transform: 'scale(1.05)', // Aumenta el tamaño del botón al pasar el ratón
-            },
-          }}
-        >
-          ¡Jugar de nuevo!
-        </Button>
-
+        <PlayAgainButton/>
         <BackButton />
       </Box>
     </Container>

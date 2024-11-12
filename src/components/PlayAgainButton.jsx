@@ -1,12 +1,13 @@
 import React from 'react';
 import { IconButton } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export default function BackButton() {
+import LoopIcon from '@mui/icons-material/Loop';
+
+export default function PlayAgainButton() {
   const handleReload = () => {
-    window.location.href = '/'; // Navega y recarga la página de inicio
+    window.location.reload(); // Navega y recarga la página de inicio
   };
-
+  
   return (
     <IconButton
       onClick={handleReload}
@@ -23,7 +24,7 @@ export default function BackButton() {
         }
       }}
     >
-      <ArrowBackIcon sx={{ fontSize: 60 }} />
+      <LoopIcon sx={{ fontSize: 60 }} />
     </IconButton>
   );
 }

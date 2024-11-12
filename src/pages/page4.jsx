@@ -5,6 +5,7 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CountdownButton from '../components/CountDown';
 import Page5button from '../components/Page5Button';
+import PlayAgainButton from '../components/PlayAgainButton';
 
 export default function Page4() {
   const [word, setWord] = useState('');
@@ -68,9 +69,6 @@ export default function Page4() {
     }
   };
 
-  const refreshPage = () => {
-    window.location.reload();
-  };
 
   return (
     <Container sx={{ minHeight: '100vh', position: 'relative', opacity: fade, transition: 'opacity 1s ease' }}>
@@ -88,7 +86,7 @@ export default function Page4() {
           fontFamily: 'Bebas Neue Cyrillic',
           color: 'white',
           textAlign: "center",
-          fontSize: "3rem",
+          fontSize: "4rem",
           marginBottom: "-40px",
           marginTop: "20px",
         }}
@@ -169,6 +167,7 @@ export default function Page4() {
       </Box>
 
       <Page5button />
+
       <Box
         sx={{
           position: 'fixed',
@@ -179,32 +178,9 @@ export default function Page4() {
           alignItems: 'center',
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={refreshPage}
-          sx={{
-            height: '56px',
-            fontFamily: 'Bebas Neue Cyrillic',
-            fontSize: '2rem',
-            color: '#0075f2',
-            border: '2px solid white',
-            borderRadius: '50px',
-            padding: '10px 40px',
-            backgroundColor: '#FFFFFF',
-            textTransform: 'none',
-            transition: 'background-color 0.3s ease, transform 0.3s ease',
-            '&:hover': {
-              backgroundColor: '#0075f2',
-              color: 'white',
-              transform: 'scale(1.05)',
-            },
-          }}
-        >
-          ¡Jugar de nuevo!
-        </Button>
-
+        <PlayAgainButton/>
         <BackButton />
+
       </Box>
     </Container>
   );

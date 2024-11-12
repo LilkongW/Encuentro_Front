@@ -33,6 +33,10 @@ export default function Page1({ setAnimateMascot }) {
         }, 100);
     };
 
+    const handleInfoClick = () => {
+        navigate("/pagetrans"); // Navega a la página /pagetrans
+    };
+
     return (
         <Container sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
             <Box 
@@ -68,7 +72,7 @@ export default function Page1({ setAnimateMascot }) {
                 >
                     <Grow in={buttonVisible && !hideElements} timeout={2000}>
                         <Button 
-                            onClick={null}
+                            onClick={handleInfoClick} // Llama a handleInfoClick para navegar a /pagetrans
                             sx={{ 
                                 mt: 4,
                                 fontFamily: 'Bebas Neue Cyrillic', 
