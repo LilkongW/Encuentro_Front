@@ -103,24 +103,7 @@ function AppContent() {
           <Route path="/page4" element={<Page4 />} />
           <Route path="/page5" element={<Page5 />} />
         </Routes>
-      </Box>
-                  {/* Contenedor para la lista en la parte superior izquierda */}
-                <Box 
-                sx={{ 
-                    position: 'absolute', 
-                    top: 25, 
-                    right: 24,
-                    color: 'white', 
-                    textAlign: 'left', // Cambiado a 'left' para alinear a la izquierda
-                    lineHeight: 1.5, // Espaciado entre líneas
-                }}
-            >
-                <Typography 
-                    variant="body1" 
-                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 1, fontSize:"1.2rem" }} // Negrita y margen abajo
-                >
-                    Hecho por - Victor Toro
-                </Typography>
+
       </Box>          
     </Box>
   );

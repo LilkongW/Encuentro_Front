@@ -41,7 +41,7 @@ export default function Page1({ setAnimateMascot }) {
                     flexDirection: 'column', 
                     alignItems: 'center', 
                     mt: 28,
-                    ml: 55 
+                    ml: 75
                 }}
             >
                 <Grow in={checked && !hideElements} timeout={3000}>
@@ -60,72 +60,64 @@ export default function Page1({ setAnimateMascot }) {
                         </Box>
                     </Typography>
                 </Grow>
-
-                <Grow in={buttonVisible && !hideElements} timeout={2000}>
-                    <Button 
-                        onClick={handleStartClick}
-                        sx={{ 
-                            mt: 4,
-                            fontFamily: 'Bebas Neue Cyrillic', 
-                            fontSize: '3rem', 
-                            color: '#0075f2', 
-                            border: '2px solid white', 
-                            borderRadius: '50px', 
-                            padding: '10px 40px', 
-                            backgroundColor: '#FFFFFF', 
-                            textTransform: 'none',
-                            transition: 'background-color 0.3s ease, transform 0.3s ease',
-                            '&:hover': {
-                                backgroundColor: '#0075f2',
-                                color: 'white',
-                                transform: 'scale(1.05)',
-                            },
-                        }}
-                    >
-                        Start
-                    </Button>
-                </Grow>
-            </Box>
-
-            <Box 
-                sx={{ 
-                    position: 'absolute', 
-                    top: 60,  // Ajusta este valor para posicionar verticalmente
-                    right: -310, // Ajusta este valor para posicionar horizontalmente
-                    color: 'white', 
-                    textAlign: 'left',
-                    lineHeight: 1.5,
-                }}
-            >
-                <Typography 
-                    variant="body1" 
-                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5 , fontSize:"2rem"}} 
+                <Box
+                    sx={{
+                        display:"flex",
+                        gap:"30px",
+                    }}
                 >
-                    Expositores:
-                </Typography>
-                <Box sx={{ ml: 2 }}>
-                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic', fontSize:"1.2rem" }}>
-                        - Josuep Turmero
-                    </Typography>
-                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic',fontSize:"1.2rem" }}>
-                        - Roygel Rosales
-                    </Typography>
-                </Box>
+                    <Grow in={buttonVisible && !hideElements} timeout={2000}>
+                        <Button 
+                            onClick={null}
+                            sx={{ 
+                                mt: 4,
+                                fontFamily: 'Bebas Neue Cyrillic', 
+                                fontSize: '3rem', 
+                                color: '#0075f2', 
+                                border: '2px solid white', 
+                                borderRadius: '50px', 
+                                padding: '10px 40px', 
+                                backgroundColor: '#FFFFFF', 
+                                textTransform: 'none',
+                                transition: 'background-color 0.3s ease, transform 0.3s ease',
+                                '&:hover': {
+                                    backgroundColor: '#0075f2',
+                                    color: 'white',
+                                    transform: 'scale(1.05)',
+                                },
+                            }}
+                        >
+                            INFO
+                        </Button>
+                    </Grow>
 
-                <Typography 
-                    variant="body1" 
-                    sx={{ fontFamily: 'Bebas Neue Cyrillic', fontWeight: 'bold', mb: 0.5, fontSize:"2rem" }} 
-                >
-                    Profesores: 
-                </Typography>
-                <Box sx={{ ml: 2 }}>
-                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic' , fontSize:"1.2rem"}}>
-                        - Juan Carlos Villegas
-                    </Typography>
-                    <Typography variant="body1" sx={{ fontFamily: 'Bebas Neue Cyrillic', fontSize:"1.2rem" }}>
-                        - Stephanie Carrillo
-                    </Typography>
+                    <Grow in={buttonVisible && !hideElements} timeout={2000}>
+                        <Button 
+                            onClick={handleStartClick}
+                            sx={{ 
+                                mt: 4,
+                                fontFamily: 'Bebas Neue Cyrillic', 
+                                fontSize: '3rem', 
+                                color: '#0075f2', 
+                                border: '2px solid white', 
+                                borderRadius: '50px', 
+                                padding: '10px 40px', 
+                                backgroundColor: '#FFFFFF', 
+                                textTransform: 'none',
+                                transition: 'background-color 0.3s ease, transform 0.3s ease',
+                                '&:hover': {
+                                    backgroundColor: '#0075f2',
+                                    color: 'white',
+                                    transform: 'scale(1.05)',
+                                },
+                            }}
+                        >
+                            Start
+                        </Button>
+                    </Grow>
+
                 </Box>
+                
             </Box>
 
             <Box 
@@ -139,7 +131,7 @@ export default function Page1({ setAnimateMascot }) {
                     justifyContent: 'center', 
                     alignItems: 'center', 
                     padding: 2,
-                    backgroundColor: 'rgba(0, 0, 0, 0.1)', 
+                    backgroundColor: 'rgba(255, 255, 255, 0.5)', 
                     backdropFilter: 'blur(2px)', 
                 }}
             >
