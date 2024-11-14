@@ -1,5 +1,6 @@
 import { Container, Box, Grow, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate
+import FooterAuthor from '../components/FooterAuthor';
 
 export default function Page2() {
     const navigate = useNavigate(); // Inicializa el hook useNavigate
@@ -17,6 +18,7 @@ export default function Page2() {
             justifyContent: 'flex-start', // Alinea el contenido hacia la izquierda
             px: 0, 
         }}>
+            
             <Box
                 sx={{
                     display: 'flex',
@@ -76,9 +78,10 @@ export default function Page2() {
                         }}
                     >
                         DINAMICO
-                    </Button>
+                    </Button>                   
                 </Grow>
             </Box>
+            <FooterAuthor Right={false}/>
         </Container>
     );
 }

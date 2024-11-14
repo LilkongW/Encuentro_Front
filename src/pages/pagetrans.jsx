@@ -56,7 +56,9 @@ export default function PageTrans() {
                     </Typography>
                 </Grow>
             </Box>
-                <FooterAuthor/>
+            <Box>
+                <FooterAuthor Right={true}/>
+            </Box>
         </Container>
     );
 }

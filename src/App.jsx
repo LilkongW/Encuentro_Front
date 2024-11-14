@@ -26,11 +26,9 @@ function App() {
 function AppContent() {
   const location = useLocation();
   const [animateMascot, setAnimateMascot] = useState(false);
-  const [showPage2, setShowPage2] = useState(false);
 
   const handleAnimationEnd = () => {
     setAnimateMascot(false);
-    setShowPage2(true); // Se establece al final de la animación.
   };
 
   return (
@@ -61,9 +59,9 @@ function AppContent() {
             top: '50%',
             left: location.pathname === '/page2' ? '65%' : (animateMascot ? '65%' : '0%'),
             transform: 'translateY(-50%)',
-            width: '35%',
-            height: '100%',
-            borderRadius: location.pathname === '/page2' ? '100% 0 0 100%' : (animateMascot ? '50%' : '0 100% 100% 0'),
+            width: animateMascot ? '20%' : '35%', // Igual ancho y alto cuando está en círculo
+            height: animateMascot ? '20%' : '100%',
+            borderRadius: animateMascot ? '50%' : (location.pathname === '/page2' ? '100% 0 0 100%' : '0 100% 100% 0'),
             backgroundColor: 'white',
             zIndex: -1,
             display: 'flex',
@@ -79,6 +77,8 @@ function AppContent() {
             alt="Mascota"
             sx={{
               objectFit: 'contain',
+              width: '80%', // Ajusta el tamaño de la mascota dentro del círculo
+              height: '80%',
               transform: location.pathname === '/page2' ? 'scaleX(-1)' : 'none',
             }}
           />
