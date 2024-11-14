@@ -162,7 +162,7 @@ export default function Page4() {
         ) : null}
       </Box>
 
-      <Box sx={{ position: 'fixed', left: 0, top: '40%' }}>
+      <Box sx={{ position: 'fixed', left: 0, top: '50%' }}>
         <CountdownButton onCountdownFinish={handleCountdownFinish} />
       </Box>
 

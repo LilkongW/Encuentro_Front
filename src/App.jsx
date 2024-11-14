@@ -12,7 +12,6 @@ import theme from './theme';
 import { Box } from "@mui/material";
 import Mascota from "./assets/mascota.png";
 import { useState } from 'react';
-import {Typography} from '@mui/material';
 
 function App() {
   return (
@@ -31,7 +30,7 @@ function AppContent() {
 
   const handleAnimationEnd = () => {
     setAnimateMascot(false);
-    setShowPage2(true); // Puedes setear directamente esto al final de la animación.
+    setShowPage2(true); // Se establece al final de la animación.
   };
 
   return (
@@ -60,11 +59,11 @@ function AppContent() {
           sx={{
             position: 'absolute',
             top: '50%',
-            left: animateMascot || showPage2 ? '65%' : '0%',
+            left: location.pathname === '/page2' ? '65%' : (animateMascot ? '65%' : '0%'),
             transform: 'translateY(-50%)',
             width: '35%',
             height: '100%',
-            borderRadius: animateMascot ? '50%' : (showPage2 ? '100% 0 0 100%' : '0 100% 100% 0'),
+            borderRadius: location.pathname === '/page2' ? '100% 0 0 100%' : (animateMascot ? '50%' : '0 100% 100% 0'),
             backgroundColor: 'white',
             zIndex: -1,
             display: 'flex',
@@ -80,7 +79,7 @@ function AppContent() {
             alt="Mascota"
             sx={{
               objectFit: 'contain',
-              transform: showPage2 ? 'scaleX(-1)' : 'none',
+              transform: location.pathname === '/page2' ? 'scaleX(-1)' : 'none',
             }}
           />
         </Box>
@@ -105,7 +104,6 @@ function AppContent() {
           <Route path="/page5" element={<Page5 />} />
           <Route path="/pagetrans" element={<PageTrans />} />
         </Routes>
-
       </Box>          
     </Box>
   );

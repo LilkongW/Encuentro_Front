@@ -13,10 +13,9 @@ export default function Page1({ setAnimateMascot }) {
         setChecked(true);
         const buttonTimer = setTimeout(() => setButtonVisible(true), 2000);
 
-        // Temporizador para recargar la página cada 30 segundos
         const refreshTimer = setInterval(() => {
-            window.location.reload();
-        }, 15000);
+            navigate(0); // Esto hace que navegues a la ruta actual
+        }, 12000);
 
         return () => {
             clearTimeout(buttonTimer);

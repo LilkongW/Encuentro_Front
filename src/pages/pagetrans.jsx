@@ -18,6 +18,8 @@ export default function PageTrans() {
             navigate("/page3"); // Cambia a Page3
         }, 4000); // 5000 ms = 5 segundos
 
+    
+
         return () => {
             clearTimeout(textTimer); // Limpia el temporizador para el texto
             clearTimeout(navigateTimer); // Limpia el temporizador de navegación

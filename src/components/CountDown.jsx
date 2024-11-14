@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, Typography } from '@mui/material';
-
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 function CountdownButton({ onCountdownFinish }) {
   const [countdown, setCountdown] = useState(null); // Estado para el tiempo restante
 
   const startCountdown = () => {
-    setCountdown(5); // Inicia el contador en 10 segundos
+    setCountdown(5); // Inicia el contador en 5 segundos
   };
 
   // Efecto para manejar el temporizador
@@ -30,14 +30,20 @@ function CountdownButton({ onCountdownFinish }) {
 
   return (
     <Box
-      sx={{ marginLeft: "55px", justifyItems: "center", display: "flex", alignItems: "center" }}
+      sx={{ 
+        display: "flex", 
+        flexDirection: "column", // Organiza los elementos en columna
+        alignItems: "center", 
+        marginLeft: "40px"
+      }}
     >
       <Button
         variant="contained"
         color="primary"
         onClick={startCountdown}
         sx={{
-          height: '56px',
+          height: '100px',
+
           fontFamily: 'Bebas Neue Cyrillic',
           fontSize: '2rem',
           color: '#0075f2',
@@ -52,10 +58,24 @@ function CountdownButton({ onCountdownFinish }) {
             color: 'white',
             transform: 'scale(1.05)',
           },
-          marginRight: 2, // Espacio entre el botón y el temporizador
+          marginBottom: 2, // Espacio entre el botón y el temporizador
         }}
       >
-        Dame una letra!
+        <Typography
+          sx={{ 
+            fontFamily: 'Bebas Neue Cyrillic', 
+            fontSize: "3rem" 
+          }}
+        >
+          TIEMPO!
+        </Typography>
+
+        <AccessTimeIcon
+        sx={{marginLeft:"20px",
+          width:"70px",
+          height:"70px"
+        }}
+        />
       </Button>
       {countdown !== null && (
         <Typography 

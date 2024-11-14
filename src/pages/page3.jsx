@@ -8,6 +8,7 @@ export default function Page3() {
     const navigate = useNavigate();
     const [isHoveredStep, setIsHoveredStep] = useState(0); // Controla el paso de cada animación
 
+
     useEffect(() => {
         const timer = setTimeout(() => setShowElements(true), 800);
 
@@ -23,9 +24,8 @@ export default function Page3() {
         };
     }, []);
 
-    // Función para manejar el clic en el botón
     const handlePlayClick = () => {
-        navigate("/page4");
+        navigate("/page2");
     };
 
     return (
