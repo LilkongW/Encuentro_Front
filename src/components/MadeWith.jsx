@@ -46,7 +46,7 @@ export default function MadeWith() {
           sx={{
             fontFamily: 'Bebas Neue Cyrillic',
             fontWeight: 'bold',
-            mb: 1,
+            mb: "12px",
             fontSize: '1.6rem',
           }}
         >

@@ -10,7 +10,7 @@ export default function FooterAuthor({ Right }) {
           bottom: 0,
           left: 0,
           width: '100%',
-          height: "30px",
+          height: "40px",
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -37,7 +37,7 @@ export default function FooterAuthor({ Right }) {
               fontFamily: 'Bebas Neue Cyrillic',
               fontWeight: 'bold',
               fontSize: '1.6rem',
-              mb: 1,
+              mb: "12px",
             }}
           >
             Hecho por - Victor Toro
